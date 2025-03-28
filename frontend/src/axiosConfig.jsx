@@ -1,9 +1,25 @@
 import axios from 'axios';
 
-const axiosInstance = axios.create({
+const instance = axios.create({
   baseURL: 'http://localhost:5001', // local
   //baseURL: 'http://3.26.96.188:5001', // live
   headers: { 'Content-Type': 'application/json' },
 });
 
-export default axiosInstance;
+instance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      console.log('Token being used:', token);
+      config.headers['Authorization'] = `Bearer ${token}`;
+    } else {
+      console.warn('No token found in localStorage');
+    }
+    return config;
+  },
+  (error) => {
+    console.error('Axios request error:', error);
+    return Promise.reject(error);
+  }
+);
+export default instance;

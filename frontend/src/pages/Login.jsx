@@ -12,10 +12,11 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axiosInstance.post('/api/auth/login', formData);
+      localStorage.setItem('token', response.data.token);
       login(response.data);
       navigate('/tasks');
     } catch (error) {
-      alert('Login failed. Please try again.');
+      alert(error.response?.data?.message || 'Login failed. Please try again.');
     }
   };
 
