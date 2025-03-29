@@ -21,7 +21,9 @@ jobs:
 
       - name: Install backend dependencies
         working-directory: backend
-        run: npm install
+        run: |
+            npm install
+            npm install --save-dev chai-http
 
       - name: Run backend tests
         working-directory: backend
@@ -34,3 +36,5 @@ jobs:
       - name: Run frontend tests
         working-directory: frontend
         run: npm test
+
+        
