@@ -18,7 +18,7 @@ app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/jobs', jobRoutes);
 app.use('/api/applications', applicationRoutes);
 app.use('/api/employer-profile', employerProfileRoutes);
-app.use('/api/tasks', require('./routes/TaskRoutes'));
+
 
 // Export the app object for testing
 if (require.main === module) {
