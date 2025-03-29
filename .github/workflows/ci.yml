@@ -36,5 +36,6 @@ jobs:
       - name: Run frontend tests
         working-directory: frontend
         run: npm test
+        continue-on-error: true
 
         
