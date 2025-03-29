@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Tasks from './pages/Tasks';
 import ApplicationManagement from './pages/ApplicationManagement';
 import EmployerJobDashboard from './pages/EmployerJobDashboard';
 import JobForm from './components/JobForm';
@@ -19,7 +18,6 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/tasks" element={<Tasks />} />
         <Route path="/" element={<JobList />} />
         <Route path="/jobs" element={<JobList />} />
         <Route path="/apply/:jobId" element={<JobApplicationForm />} />
