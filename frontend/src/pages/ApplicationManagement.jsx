@@ -9,7 +9,6 @@ const ApplicationManagement = () => {
   const [job, setJob] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedStatus, setSelectedStatus] = useState({});
-  const [newApplication, setNewApplication] = useState({ jobId: jobId, coverLetter: '' });
 
   const fetchJobDetails = useCallback(async () => {
     try {
@@ -71,25 +70,6 @@ const ApplicationManagement = () => {
     }
   };
 
-  const handleNewApplicationChange = (e) => {
-    setNewApplication({
-      ...newApplication,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleCreateApplication = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.post('/api/applications', newApplication);
-      toast.success('Application created successfully');
-      setNewApplication({ jobId: jobId, coverLetter: '' });
-      fetchApplications();
-    } catch (error) {
-      toast.error(error.response?.data?.message || 'Failed to create application');
-    }
-  };
-
   if (loading) {
     return <div>Loading applications...</div>;
   }
@@ -106,20 +86,6 @@ const ApplicationManagement = () => {
           <p>{job.description}</p>
         </div>
       )}
-
-      <form onSubmit={handleCreateApplication} className="my-4 p-4 bg-gray-100 rounded">
-        <textarea
-          name="coverLetter"
-          value={newApplication.coverLetter}
-          onChange={handleNewApplicationChange}
-          className="w-full border p-2"
-          placeholder="Enter cover letter"
-          required
-        />
-        <button type="submit" className="mt-2 bg-blue-500 text-white p-2 rounded">
-          Submit Application
-        </button>
-      </form>
 
       <div className="overflow-x-auto bg-white shadow rounded-lg">
         <table className="min-w-full divide-y divide-gray-200">

@@ -79,7 +79,7 @@ const JobPostingForm = () => {
   
     const completeFormData = {
       ...formData,
-      applicationDeadline: formData.applicationDeadline, // 保持原始字符串
+      applicationDeadline: formData.applicationDeadline, 
       requirements: formData.requirements || '',
       salary: formData.salary || ''
     };
